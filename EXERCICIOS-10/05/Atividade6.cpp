@@ -21,8 +21,9 @@ class Funcionario{
         return salario;
     }
 
-    void ganhoAnual(){
+    int ganhoAnual(){
         std::cout << "Ganho anual: " << salario*12;
+        return 0;
     }
 
     void exibeDados(){
@@ -54,13 +55,60 @@ class Assistente : public Funcionario{
     int matricula;
 };
 
+class Tecnico : public Assistente{
+    public:
+    Tecnico(){}
+    ~Tecnico(){}
+
+    float bonuSalario(){
+        float bonusTecnico;
+        std::cout << "Qual o valor do bônus salarial de um Assistente Técnico? ";
+        std::cin bonusTecnico;
+        salario=bonusTecnico+salario;
+        return salario;        
+    }
+
+    int ganhoAnual (){
+        std::cout << "O ganho anual do Assistente Técnico é de: " << (bonusTecnico + salario)*12;
+        return 0;
+    }
+};
+
+class Administrativo : public Assistente{
+    public:
+    Administrativo(){}
+    ~Administrativo(){}
+
+    std::cout << "Se o Assistente Administrativo trabalha de dia, digite 1. Se for de noite, digite 2. ";
+    std::cin >> DN;
+    if(DN==0){
+        float bonuSalario(){
+            float bonusTecnico;
+            std::cout << "Qual o valor do bônus salarial de um Assistente Administrativo que trabalha de noite? ";
+            std::cin >> bonusTecnico;
+            salario=bonusTecnico+salario;
+            return salario;    
+        }
+    } else{
+        std::cout << "Assistentes Administrativos que trabalham diurnamente não recebem bônus salarial.";
+    }
+
+    int ganhoAnual (){
+    std::cout << "O ganho anual do Assistente Administrativo é de: " << (bonusTecnico + salario)*12;
+    return 0;
+    }
+    
+    private:
+    int DN;
+}
+
 int main(){
 
     Assistente GetSet;
 
     std::string nome;
     float salario;
-    int op, matricula;
+    int op, matricula, op2;
 
     std::cout << "Digite o nome do funcionário: ";
     std::cin >> nome;
@@ -77,5 +125,8 @@ int main(){
         salario=GetSet.addAumento(salario);
     }
     GetSet.exibeDados(salario);
+    std::cout << "Digite 1 para Assistente Técnico e 2 para Assistente Administrativo. ";
+    std::cin >> op2;
+    salario=GetSet.bonuSalario(salario);
     return 0;
 }
