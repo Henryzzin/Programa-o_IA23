@@ -21,9 +21,8 @@ class Funcionario{
         return salario;
     }
 
-    int ganhoAnual(){
+    void ganhoAnual(){
         std::cout << "Ganho anual: " << salario*12;
-        return 0;
     }
 
     void exibeDados(){
@@ -44,14 +43,14 @@ class Assistente : public Funcionario{
     void setMatricula(int _matricula){
         matricula=_matricula;
     }
-    
+
     void exibeDados(float salario){
         std::cout << "Nome: " << nome;
         std::cout << "\nSalário: " << salario;
         std::cout << "\nMatrícula " << matricula;
     }
 
-    private:
+    protected:
     int matricula;
 };
 
@@ -60,18 +59,28 @@ class Tecnico : public Assistente{
     Tecnico(){}
     ~Tecnico(){}
 
-    float bonuSalario(){
-        float bonusTecnico;
-        std::cout << "Qual o valor do bônus salarial de um Assistente Técnico? ";
-        std::cin bonusTecnico;
-        salario=bonusTecnico+salario;
-        return salario;        
+    float pergBonus(){
+        std::cout << "Qual o bônus salarial do assistente técnico?";
+        std::cin >> bonusSalarioT;
+        return bonusSalarioT;
+    }
+    float bonusTecnico(){
+        salario=salario+bonusSalarioT;
+        return salario;
+    }
+    void exibeDados(float salario){
+        std::cout << "Nome: " << nome;
+        std::cout << "\nSalário: " << salario;
+        std::cout << "\nMatrícula: " << matricula;
+        std::cout << "\nCargo: Técnico";
     }
 
-    int ganhoAnual (){
-        std::cout << "O ganho anual do Assistente Técnico é de: " << (bonusTecnico + salario)*12;
-        return 0;
+    void ganhoAnual(){
+        std::cout << "\nGanho anual: " << salario*12;
     }
+
+    private:
+    float bonusSalarioT;
 };
 
 class Administrativo : public Assistente{
@@ -79,54 +88,71 @@ class Administrativo : public Assistente{
     Administrativo(){}
     ~Administrativo(){}
 
-    std::cout << "Se o Assistente Administrativo trabalha de dia, digite 1. Se for de noite, digite 2. ";
-    std::cin >> DN;
-    if(DN==0){
-        float bonuSalario(){
-            float bonusTecnico;
-            std::cout << "Qual o valor do bônus salarial de um Assistente Administrativo que trabalha de noite? ";
-            std::cin >> bonusTecnico;
-            salario=bonusTecnico+salario;
-            return salario;    
-        }
-    } else{
-        std::cout << "Assistentes Administrativos que trabalham diurnamente não recebem bônus salarial.";
+    float DN(){
+        std::cout << "Se o técnico administrativo trabalhar de dia, digite 1. Caso trabalhe no turno da noite, digite 2.";
+        std::cin >> dianoite;
+        return dianoite;
+    }
+    float bonusNoturno (){
+        std::cout << "Qual o bônus salarial do técnico administrativo que trabalha no turno da noite?";
+        std::cin >> bonusSalarioA;
+        return bonusSalarioA;
+    }
+    float bonusAdministrativo(){
+        salario=salario+bonusSalarioA;
+        return salario;
     }
 
-    int ganhoAnual (){
-    std::cout << "O ganho anual do Assistente Administrativo é de: " << (bonusTecnico + salario)*12;
-    return 0;
+    void ganhoAnual(){
+        std::cout << "\nGanho anual: " << salario*12;
     }
-    
+
     private:
-    int DN;
-}
+    int dianoite;
+    float bonusSalarioA;
+};
 
 int main(){
 
-    Assistente GetSet;
+    Funcionario* Objeto = new Funcionario();
 
     std::string nome;
     float salario;
-    int op, matricula, op2;
+    int op, matricula, a, b;
 
     std::cout << "Digite o nome do funcionário: ";
     std::cin >> nome;
     std::cout << "Digite o salário do funcionário: ";
     std::cin >> salario;
-    GetSet.setNome (nome);
-    GetSet.setSalario (salario);
-    std::cout << "Digite o número da matrícula do assistente: ";
-    std::cin >> matricula;
-    GetSet.setMatricula (matricula);
+    Objeto.setNome(nome);
+    Objeto.setSalario(salario);
+    std::cout << "Digite 1 se o Funcionário for um Assistente: ";
+    std::cin >> a;
+    if(a==1){
+        Objeto = dynamic_cast<Assistente*>(Objeto);
+        std::cout << "Digite o número da matrícula do assistente: ";
+        std::cin >> matricula;
+        std::cout << "Digite 1 caso o assistente seja Técnico e 2 se for Administrativo: ";
+        std::cin >> b;
+        if(b==1){
+            Objeto.pergBonus();
+            Objeto.bonusTecnico();
+        }
+        else if (b==2){
+            Objeto.DN();
+            Objeto.bonusNoturno();
+            Objeto.bonusAdministrativo();
+        } else{
+            std::cout << "Valor INVÁLIDO para cargo do ASSISTENTE.";
+        }
+    }
+    Objeto.exibeDados(salario);
+    return 0;
     std::cout << "Digite 1 caso desejo dar um aumento no salário do funcionário, qualquer outro valor se não for o caso: ";
     std::cin >> op;
+
+    float aumento;
     if (op==1){
-        salario=GetSet.addAumento(salario);
+        aumento=Objeto.addAumento(salario);
     }
-    GetSet.exibeDados(salario);
-    std::cout << "Digite 1 para Assistente Técnico e 2 para Assistente Administrativo. ";
-    std::cin >> op2;
-    salario=GetSet.bonuSalario(salario);
-    return 0;
 }
