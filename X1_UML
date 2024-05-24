@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-05-24T12:24:34.579Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="B2Jbqp0EfT1CRh6q_NPs" version="24.4.7" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-24T12:47:00.939Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="S8aZnc-LlExD6eokcfnZ" version="24.4.7" type="github">
   <diagram name="Página-1" id="lxE0eM6Yj0Sa0Z_isOzC">
     <mxGraphModel dx="1195" dy="643" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -94,10 +94,11 @@
         <mxCell id="Cw2kTjlwgeBc_QN1Vbgf-33" value="+ transferencia(valor: float): float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="Cw2kTjlwgeBc_QN1Vbgf-30">
           <mxGeometry y="60" width="170" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="Cw2kTjlwgeBc_QN1Vbgf-34" value="name" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;" edge="1" parent="1" source="Cw2kTjlwgeBc_QN1Vbgf-3" target="Cw2kTjlwgeBc_QN1Vbgf-18">
+        <mxCell id="Cw2kTjlwgeBc_QN1Vbgf-34" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;" edge="1" parent="1" source="Cw2kTjlwgeBc_QN1Vbgf-3" target="Cw2kTjlwgeBc_QN1Vbgf-18">
           <mxGeometry x="-1" relative="1" as="geometry">
             <mxPoint x="310" y="570" as="sourcePoint" />
             <mxPoint x="490" y="630" as="targetPoint" />
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="Cw2kTjlwgeBc_QN1Vbgf-35" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="Cw2kTjlwgeBc_QN1Vbgf-34">
